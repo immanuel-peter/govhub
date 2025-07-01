@@ -1,16 +1,22 @@
 import { billTypeAliases } from "./billTypeAliases";
 import { actionTypeAliases } from "./actionTypeAliases";
 
-export const getBillTypeAlias = (billType: string) => {
+export const getBillTypeAlias = (billType?: string): string => {
+  if (typeof billType !== "string") return "";
+
   const alias =
     billTypeAliases[billType.toLowerCase() as keyof typeof billTypeAliases];
+
   return alias || billType;
 };
 
-export const getActionTypeAlias = (actionType: string) => {
+export const getActionTypeAlias = (actionType?: string): string => {
+  if (typeof actionType !== "string") return "";
+
   const alias =
     actionTypeAliases[
       actionType.toLowerCase() as keyof typeof actionTypeAliases
     ];
+
   return alias || actionType;
 };

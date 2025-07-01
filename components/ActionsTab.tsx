@@ -32,30 +32,44 @@ const ActionTypeBadge = ({ type }: { type: string }) => {
   );
 };
 
-const ActionsTab = ({ actions }: { actions: Action[] }) => (
-  <div className="p-4 md:p-6 lg:p-8">
-    <h2 className="text-xl font-semibold text-gray-800 mb-6">
-      Actions Timeline
-    </h2>
-    <div className="relative border-l-2 border-gray-200 ml-4">
-      {actions.map((action, index) => (
-        <div key={index} className="mb-8 ml-8">
-          <span className="absolute flex items-center justify-center w-8 h-8 bg-blue-100 rounded-full -left-4 ring-8 ring-white">
-            <List className="w-4 h-4 text-blue-600" />
-          </span>
-          <div className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between mb-2">
-              <ActionTypeBadge type={action.type} />
-              <time className="text-sm font-normal text-gray-500">
-                {action.date}
-              </time>
+const ActionsTab = ({ actions }: { actions: Action[] }) => {
+  if (actions.length === 0) {
+    return (
+      <div className="p-4 md:p-6 lg:p-8 min-h-[600px] flex items-center justify-center">
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">
+          No recent actions taken
+        </h2>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-4 md:p-6 lg:p-8">
+      <h2 className="text-xl font-semibold text-gray-800 mb-6">
+        Actions Timeline
+      </h2>
+      <div className="relative border-l-2 border-gray-200 ml-4">
+        {actions.map((action, index) => (
+          <div key={index} className="mb-8 ml-8">
+            <span className="absolute flex items-center justify-center w-8 h-8 bg-blue-100 rounded-full -left-4 ring-8 ring-white">
+              <List className="w-4 h-4 text-blue-600" />
+            </span>
+            <div className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <ActionTypeBadge type={action.type} />
+                <time className="text-sm font-normal text-gray-500">
+                  {action.date}
+                </time>
+              </div>
+              <p className="text-base font-normal text-gray-600">
+                {action.text}
+              </p>
             </div>
-            <p className="text-base font-normal text-gray-600">{action.text}</p>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default ActionsTab;

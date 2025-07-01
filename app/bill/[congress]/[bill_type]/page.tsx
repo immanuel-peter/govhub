@@ -1,5 +1,5 @@
 import BillTypePageComponent from "@/components/BillTypePageComponent";
-import { billTypeData } from "@/lib/mock/billData";
+import { fetchBill } from "@/lib/fetchers/fetchBill";
 
 const BillByTypePage = async ({
   params,
@@ -8,10 +8,12 @@ const BillByTypePage = async ({
 }) => {
   const { congress, bill_type } = await params;
 
+  const billData = await fetchBill(parseInt(congress), bill_type);
+
   return (
     <BillTypePageComponent
       params={{ congress, bill_type }}
-      billData={billTypeData}
+      billData={billData}
     />
   );
 };

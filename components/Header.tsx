@@ -1,5 +1,6 @@
 import { ChevronsRight, Eye, StarIcon, Share2 } from "lucide-react";
 import { getBillTypeAlias } from "@/lib/utils";
+import Link from "next/link";
 
 interface HeaderProps {
   congress: number;
@@ -27,6 +28,18 @@ const LawBadge = () => (
   </span>
 );
 
+const formatCongress = (congress: number) => {
+  if (congress % 10 == 1) {
+    return `${congress}st Congress`;
+  } else if (congress % 10 == 2) {
+    return `${congress}nd Congress`;
+  } else if (congress % 10 == 3) {
+    return `${congress}rd Congress`;
+  } else {
+    return `${congress}th Congress`;
+  }
+};
+
 const Header = ({
   congress,
   billType,
@@ -39,19 +52,19 @@ const Header = ({
       {/* Breadcrumbs and Action Buttons */}
       <div className="flex justify-between items-center">
         <div className="flex items-center space-x-2 text-sm text-gray-500">
-          <span
-            onClick={() => {}}
+          <Link
+            href={`/bill/${congress}`}
             className="font-semibold text-blue-600 cursor-pointer"
           >
-            {congress}th Congress
-          </span>
+            {formatCongress(congress)}
+          </Link>
           <ChevronsRight className="w-4 h-4 text-gray-400" />
-          <span
-            onClick={() => {}}
+          <Link
+            href={`/bill/${congress}/${billType}`}
             className="font-semibold text-blue-600 cursor-pointer"
           >
             {getBillTypeAlias(billType)}
-          </span>
+          </Link>
           <ChevronsRight className="w-4 h-4 text-gray-400" />
           <span className="font-semibold">{billNumber}</span>
         </div>

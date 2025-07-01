@@ -13,7 +13,7 @@ export interface BillTabProps {
 }
 
 const BillTab = ({ summary, pdfUrl, metadata }: BillTabProps) => (
-  <div className="p-4 md:p-6 lg:p-8">
+  <div className="p-4 md:p-6 lg:p-8 min-h-[600px]">
     <div className="flex flex-col md:flex-row gap-8">
       {/* Left Column */}
       <div className="w-full md:w-2/3">
@@ -21,18 +21,23 @@ const BillTab = ({ summary, pdfUrl, metadata }: BillTabProps) => (
           <h2 className="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">
             Summary
           </h2>
-          <p>{summary}</p>
-        </div>
-        <div className="mt-8">
-          <h2 className="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">
-            Bill Document
-          </h2>
-          <iframe
-            src={pdfUrl}
-            className="w-full h-96 border border-gray-300 rounded-lg"
-            title="Bill Document PDF"
+          <p
+            className="prose prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: summary }}
           />
         </div>
+        {pdfUrl && (
+          <div className="mt-8">
+            <h2 className="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">
+              Bill Document
+            </h2>
+            <iframe
+              src={pdfUrl}
+              className="w-full h-96 border border-gray-300 rounded-lg"
+              title="Bill Document PDF"
+            />
+          </div>
+        )}
       </div>
       {/* Right Column */}
       <div className="w-full md:w-1/3">
@@ -49,17 +54,19 @@ const BillTab = ({ summary, pdfUrl, metadata }: BillTabProps) => (
                 {metadata.originChamber}
               </dd>
             </div>
-            <div>
-              <dt className="text-sm font-medium text-gray-500">
-                Latest Action
-              </dt>
-              <dd className="mt-1 text-sm text-gray-900">
-                {metadata.latestAction.text}
-              </dd>
-              <dd className="mt-1 text-xs text-gray-500">
-                {metadata.latestAction.date}
-              </dd>
-            </div>
+            {metadata.latestAction.text && metadata.latestAction.date && (
+              <div>
+                <dt className="text-sm font-medium text-gray-500">
+                  Latest Action
+                </dt>
+                <dd className="mt-1 text-sm text-gray-900">
+                  {metadata.latestAction.text}
+                </dd>
+                <dd className="mt-1 text-xs text-gray-500">
+                  {metadata.latestAction.date}
+                </dd>
+              </div>
+            )}
             <div>
               <dt className="text-sm font-medium text-gray-500">Policy Area</dt>
               <dd className="mt-1 text-sm text-gray-900">

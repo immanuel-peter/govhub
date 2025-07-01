@@ -15,10 +15,12 @@ const BillComponent = ({ bill }: { bill: BillData }) => (
     <p className="text-sm text-blue-600 font-medium mt-1">
       {bill.congress}th Congress - {bill.type} {bill.number}
     </p>
-    <p className="mt-3 text-xs text-gray-500 border-t pt-2">
-      <strong>Latest Action:</strong> {bill.latestAction.text} (
-      {bill.latestAction.date})
-    </p>
+    {bill.latestAction.text && bill.latestAction.date && (
+      <p className="mt-3 text-xs text-gray-500 border-t pt-2">
+        <strong>Latest Action:</strong> {bill.latestAction.text} (
+        {bill.latestAction.date})
+      </p>
+    )}
   </div>
 );
 

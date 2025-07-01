@@ -50,7 +50,7 @@ export const billData = {
   ],
   amendments: [
     {
-      number: "SA 2137",
+      number: "2137",
       description: "In the nature of a substitute.",
       purpose: "To substitute the text of the bill with a new version.",
       type: "SAMDT",
@@ -61,7 +61,7 @@ export const billData = {
       },
     },
     {
-      number: "HA 99",
+      number: "99",
       description: "To strike a provision related to funding for research.",
       purpose: "To remove section 501 of the bill.",
       type: "HAMDT",

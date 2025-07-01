@@ -36,38 +36,48 @@ const SponsorCard = ({ sponsor }: { sponsor: Sponsor }) => (
     <p className="px-2 bg-gray-200 text-sm text-gray-500 rounded-full">
       {sponsor.state}
     </p>
-    {/* <div>
-      <p className="font-semibold text-gray-800">{sponsor.name}</p>
-      <p className="text-sm text-gray-500">
-        {sponsor.party} - {sponsor.state}
-      </p>
-    </div> */}
   </div>
 );
 
-const SponsorsTab = ({ sponsors, cosponsors }: SponsorsTabProps) => (
-  <div className="p-4 md:p-6 lg:p-8">
-    <div>
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">
-        Sponsors ({sponsors.length})
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {sponsors.map((sponsor, index) => (
-          <SponsorCard key={index} sponsor={sponsor} />
-        ))}
+const SponsorsTab = ({ sponsors, cosponsors }: SponsorsTabProps) => {
+  if (sponsors.length === 0 && cosponsors.length === 0) {
+    return (
+      <div className="p-4 md:p-6 lg:p-8 min-h-[600px] flex items-center justify-center">
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">
+          No sponsors or cosponsors found
+        </h2>
       </div>
+    );
+  }
+
+  return (
+    <div className="p-4 md:p-6 lg:p-8 min-h-[600px]">
+      {sponsors.length > 0 && (
+        <div>
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">
+            Sponsors ({sponsors.length})
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {sponsors.map((sponsor, index) => (
+              <SponsorCard key={index} sponsor={sponsor} />
+            ))}
+          </div>
+        </div>
+      )}
+      {cosponsors.length > 0 && (
+        <div className="mt-8">
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">
+            Cosponsors ({cosponsors.length})
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {cosponsors.map((sponsor, index) => (
+              <SponsorCard key={index} sponsor={sponsor} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
-    <div className="mt-8">
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">
-        Cosponsors ({cosponsors.length})
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {cosponsors.map((sponsor, index) => (
-          <SponsorCard key={index} sponsor={sponsor} />
-        ))}
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
 export default SponsorsTab;

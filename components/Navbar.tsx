@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -31,7 +32,9 @@ const Navbar = () => {
             <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
               <span className="text-gray-900 font-bold text-sm">🏛️</span>
             </div>
-            <span className="font-semibold text-xl">GovHub</span>
+            <Link href="/" className="font-semibold text-xl">
+              GovHub
+            </Link>
           </div>
           <div className="ml-4 flex items-center md:ml-6">
             <div className="relative" ref={dropdownRef}>

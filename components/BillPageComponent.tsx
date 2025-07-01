@@ -14,10 +14,12 @@ import DiscussionTab from "./Discussion";
 import ActionsTab, { Action } from "./ActionsTab";
 import AmendmentsTab, { Amendment } from "./AmendmentsTab";
 import SponsorsTab, { Sponsor } from "./SponsorsTab";
-import RelatedBillsTab, { RelatedBill } from "./RelatedBillsTab";
+import RelatedBillsTab from "./RelatedBillsTab";
 import BillTab, { BillTabProps } from "./BillTab";
+import { BillData as BillDataType } from "./BillComponent";
 import Header from "./Header";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 interface BillData {
   congress: number;
@@ -30,7 +32,7 @@ interface BillData {
   amendments: Amendment[];
   sponsors: Sponsor[];
   cosponsors: Sponsor[];
-  relatedBills: RelatedBill[];
+  relatedBills: BillDataType[];
 }
 
 interface TabProps {
@@ -97,8 +99,7 @@ const BillPageComponent = ({ billData }: { billData: BillData }) => {
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans">
-      {/* Main Navigation Bar - Mimics GitHub's top bar */}
+    <div className="bg-gray-50 min-h-screen">
       <Navbar />
 
       <Header
@@ -128,6 +129,8 @@ const BillPageComponent = ({ billData }: { billData: BillData }) => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {renderTabContent()}
       </main>
+
+      <Footer />
     </div>
   );
 };

@@ -106,3 +106,136 @@ export const billData = {
     },
   ],
 };
+
+export const billTypeData = [
+  {
+    title: "Surface Transportation Reauthorization Act of 2021",
+    congress: 119,
+    type: "S",
+    number: 1931,
+    latestAction: {
+      text: "Read the second time. Placed on Senate Legislative Calendar under General Orders. Calendar No. 71.",
+      date: "2021-05-27",
+    },
+  },
+  {
+    title: "Clean Energy Innovation and Deployment Act of 2023",
+    congress: 119,
+    type: "S",
+    number: 847,
+    latestAction: {
+      text: "Referred to the Committee on Energy and Natural Resources.",
+      date: "2023-03-15",
+    },
+  },
+  {
+    title: "American Workforce Enhancement Act",
+    congress: 119,
+    type: "S",
+    number: 1205,
+    latestAction: {
+      text: "Committee on Judiciary. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      date: "2023-06-22",
+    },
+  },
+  {
+    title: "Medicare Drug Price Negotiation Act of 2023",
+    congress: 119,
+    type: "S",
+    number: 674,
+    latestAction: {
+      text: "Read twice and referred to the Committee on Finance.",
+      date: "2023-03-08",
+    },
+  },
+  {
+    title: "Small Business Cybersecurity Enhancement Act",
+    congress: 119,
+    type: "S",
+    number: 1398,
+    latestAction: {
+      text: "Passed Senate without amendment by Unanimous Consent.",
+      date: "2023-09-12",
+    },
+  },
+  {
+    title: "Veterans' Mental Health Care Access Act",
+    congress: 119,
+    type: "S",
+    number: 892,
+    latestAction: {
+      text: "Committee on Veterans' Affairs. Hearings held.",
+      date: "2023-05-17",
+    },
+  },
+  {
+    title: "Rural Broadband Acceleration Act of 2023",
+    congress: 119,
+    type: "S",
+    number: 1067,
+    latestAction: {
+      text: "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+      date: "2023-04-03",
+    },
+  },
+  {
+    title: "Student Loan Interest Rate Reduction Act",
+    congress: 119,
+    type: "S",
+    number: 1543,
+    latestAction: {
+      text: "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      date: "2023-07-19",
+    },
+  },
+  {
+    title: "Climate Resilient Infrastructure Act of 2023",
+    congress: 119,
+    type: "S",
+    number: 1789,
+    latestAction: {
+      text: "Referred to the Committee on Environment and Public Works.",
+      date: "2023-08-02",
+    },
+  },
+  {
+    title: "Affordable Housing Development Act",
+    congress: 119,
+    type: "S",
+    number: 2134,
+    latestAction: {
+      text: "Committee on Banking, Housing, and Urban Affairs. Ordered to be reported without amendment favorably.",
+      date: "2023-10-26",
+    },
+  },
+  {
+    title: "National AI Safety and Security Act",
+    congress: 119,
+    type: "S",
+    number: 1876,
+    latestAction: {
+      text: "Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
+      date: "2023-09-07",
+    },
+  },
+  {
+    title: "Prescription Drug Importation Act of 2023",
+    congress: 119,
+    type: "S",
+    number: 2298,
+    latestAction: {
+      text: "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      date: "2023-11-14",
+    },
+  },
+  {
+    title: "Economic Security for Seniors Act",
+    congress: 119,
+    type: "S",
+    number: 1621,
+    latestAction: {
+      text: "Committee on Finance. Reported by Senator Wyden with an amendment in the nature of a substitute.",
+      date: "2023-08-31",
+    },
+  },
+];

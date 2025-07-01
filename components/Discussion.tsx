@@ -4,7 +4,7 @@ const DiscussionTab = () => (
   <div className="p-4 md:p-6 lg:p-8">
     <div className="flex justify-between items-center mb-6">
       <h2 className="text-xl font-semibold text-gray-800">Discussions</h2>
-      <button className="px-4 py-2 bg-green-600 text-white rounded-md text-sm font-medium hover:bg-green-700">
+      <button className="px-4 py-2 bg-green-600 text-white rounded-md text-sm font-medium hover:bg-green-700 cursor-pointer">
         New discussion
       </button>
     </div>

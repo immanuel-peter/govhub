@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 
 const Navbar = () => {
@@ -31,18 +33,6 @@ const Navbar = () => {
             </div>
             <span className="font-semibold text-xl">GovHub</span>
           </div>
-          {/* <div className="flex-1 ml-6 max-w-md">
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Search className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  className="bg-gray-700 text-white placeholder-gray-400 block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 focus:outline-none focus:bg-white focus:text-gray-900 sm:text-sm"
-                  placeholder="Search..."
-                  type="search"
-                />
-              </div>
-            </div> */}
           <div className="ml-4 flex items-center md:ml-6">
             <div className="relative" ref={dropdownRef}>
               <button

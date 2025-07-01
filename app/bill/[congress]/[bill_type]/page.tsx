@@ -1,7 +1,7 @@
 import BillTypePageComponent from "@/components/BillTypePageComponent";
 import { billTypeData } from "@/lib/mock/billData";
 
-const BillPage = async ({
+const BillByTypePage = async ({
   params,
 }: {
   params: Promise<{ congress: string; bill_type: string }>;
@@ -16,4 +16,4 @@ const BillPage = async ({
   );
 };
 
-export default BillPage;
+export default BillByTypePage;

@@ -61,13 +61,6 @@ const Navbar = () => {
                       className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
                       role="menuitem"
                     >
-                      View profile
-                    </a>
-                    <a
-                      href="#"
-                      className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
-                      role="menuitem"
-                    >
                       Settings
                     </a>
                     <a

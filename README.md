@@ -1,153 +1,243 @@
 # GovHub
 
-A modern, GitHub-inspired platform for exploring and analyzing congressional legislation. GovHub provides an intuitive interface for citizens, researchers, and policymakers to access detailed information about bills, amendments, and legislative actions.
+GovHub is a modern, GitHub-inspired platform for exploring and discussing U.S. congressional legislation. Built with Next.js and React, it transforms complex legislative data into an intuitive, accessible interface that makes government more transparent and engaging for citizens, researchers, and policymakers.
 
-## Overview
+## ✨ Features
 
-GovHub transforms the traditional legislative document experience into a familiar, developer-friendly interface modeled after GitHub's design patterns. The platform focuses on making congressional data accessible and engaging through clean navigation, organized content presentation, and interactive features.
+### 📋 **Legislative Explorer**
 
-## User Experience
+- **Comprehensive Bill Pages**: View detailed bill summaries, full-text PDFs, and metadata
+- **Smart Navigation**: Breadcrumb navigation with Congress → Bill Type → Bill Number hierarchy
+- **Interactive Controls**: Watch, star, and share bills with dynamic counters
+- **Law Status Badges**: Visual indicators when bills become law
+- **404 Handling**: Graceful error pages for missing legislation
 
-### Navigation & Layout
+### 💬 **Discussion System**
 
-**Top Navigation Bar**
+- **GitHub-Style Discussions**: Threaded conversations on each bill
+- **Markdown Support**: Rich text formatting with ReactMarkdown
+- **User Mentions**: Tag users with `@username` badges in discussions
+- **Live Preview**: Write/preview tabs for comment composition
+- **Timeline Layout**: Visual comment threading with user avatars
+- **Empty States**: Helpful prompts when no discussions exist
 
-- Clean, GitHub-inspired header with GovHub branding
-- User profile dropdown with authentication options
-- Responsive design that works across all device sizes
+### 📊 **Legislative Tracking**
 
-**Bill Page Structure**
+- **Action Timeline**: Color-coded visual timeline of legislative progress
+- **Amendment Tracker**: Monitor bill amendments with status updates
+- **Sponsor Directory**: Browse sponsors and cosponsors with party affiliation
+- **Related Bills**: Discover legislative relationships and cross-references
+- **Trending Bills**: Curated lists of popular legislation
 
-- **Breadcrumb Navigation**: Clear path showing Congress → Bill Type → Bill Number
-- **Action Buttons**: Watch, Star, and Share functionality for bill tracking
-- **Law Badge**: Visual indicator when a bill has become law
-- **Tabbed Interface**: Organized content sections for easy navigation
+### 🎨 **User Experience**
 
-### Content Organization
+- **Responsive Design**: Optimized for desktop, tablet, and mobile
+- **Modern UI**: Clean, GitHub-inspired interface with Tailwind CSS
+- **Toast Notifications**: User feedback for actions (copy links, etc.)
+- **Loading States**: Smooth transitions and skeleton loaders
+- **Accessibility**: Proper ARIA labels and keyboard navigation
 
-The bill page uses a **6-tab navigation system** to organize complex legislative information:
+## 🏗️ Project Architecture
 
-#### 1. **Bill Tab** (Primary Content)
+### **Component Organization**
 
-- **Two-column layout** optimizing screen real estate
-- **Left Column**:
-  - Bill summary in readable prose format
-  - Embedded PDF viewer for full bill document
-- **Right Column**:
-  - Key metadata sidebar with essential bill information
-  - Origin chamber, latest action, policy area, introduction date
+```
+components/
+├── layout/           # Global layout components (Header, Footer, Navbar)
+├── pages/           # Full page components for different routes
+├── bill/            # Bill-related components and functionality
+│   └── tabs/        # Tabbed interface components
+```
 
-#### 2. **Discussion Tab**
+### **Route Structure**
 
-- GitHub-style discussion interface
-- Community-driven conversations about bill implications
-- "New discussion" button for user engagement
-- Threaded discussions with author attribution and reply counts
+```
+/                                    # Landing page with trending bills
+/bill/[congress]/[bill_type]         # Bill type listing page
+/bill/[congress]/[bill_type]/[num]   # Individual bill page
+├── /discussions/[id]                # Specific discussion thread
+└── /discussions/new                 # Create new discussion
+```
 
-#### 3. **Actions Tab**
+### **Tech Stack**
 
-- **Visual timeline** of legislative actions
-- **Color-coded badges** for different action types:
-  - Committee (blue), Floor (purple), Became Law (green)
-  - President (red), Intro/Referral (indigo), etc.
-- Chronological progression with dates and detailed descriptions
+- **Framework**: Next.js 15 with App Router
+- **Frontend**: React 19, TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **Markdown**: ReactMarkdown for rich text support
+- **Notifications**: Sonner for toast messages
 
-#### 4. **Amendments Tab**
+## 🚀 Getting Started
 
-- Comprehensive amendment tracking
-- Amendment number, description, and purpose
-- Latest action status for each amendment
-- Clear visual separation between different amendments
+### Prerequisites
 
-#### 5. **Sponsors Tab**
+- Node.js 18+
+- npm
 
-- **Visual party identification**:
-  - Blue "D" for Democrats
-  - Red "R" for Republicans
-  - Gray "I" for Independents
-- **Grid layout** for easy scanning
-- Separate sections for sponsors vs. cosponsors with counts
-- State abbreviations for geographic context
+### Installation
 
-#### 6. **Related Bills Tab**
+1. **Clone the repository**
 
-- Cross-references to related legislation
-- Bill titles, congress numbers, and latest actions
-- Helps users understand legislative ecosystems
+```bash
+git clone https://github.com/immanuel-peter/govhub
+cd govhub
+```
 
-### Design Philosophy
+2. **Install dependencies**
 
-**Familiar Patterns**
+```bash
+npm install
+```
 
-- Leverages GitHub's proven UX patterns that developers and power users already understand
-- Consistent color coding and visual hierarchy throughout the application
-
-**Information Accessibility**
-
-- Complex legislative data presented in digestible, scannable formats
-- Progressive disclosure - detailed information available without overwhelming initial view
-- Mobile-responsive design ensures accessibility across devices
-
-**Visual Clarity**
-
-- Strategic use of colors for party affiliation and action types
-- Clean typography with proper contrast ratios
-- Generous whitespace and logical information grouping
-
-### Technical Implementation
-
-**Modern Stack**
-
-- Built with Next.js 15 and React 19
-- Tailwind CSS for responsive design
-- Lucide React icons for consistent iconography
-- TypeScript for type safety
-
-**Component Architecture**
-
-- Modular tab-based content system
-- Reusable UI components (badges, cards, timelines)
-- Utility functions for data transformation (bill types, action types)
-
-**Data Handling**
-
-- Mock data structure demonstrating real congressional data integration
-- Type-safe interfaces for all legislative entities
-- Flexible alias system for displaying user-friendly terms
-
-## Getting Started
-
-First, run the development server:
+3. **Run the development server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. **Open in browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-Navigate to `/bill/[congress]/[bill_type]/[bill_num]` to view a bill page (e.g., `/bill/117/hr/3684`).
+### Example Routes
 
-## Future Enhancements
+- `/bill/117/hr/3684` - Infrastructure Investment and Jobs Act
+- `/bill/117/hr/3684/discussions` - Bill discussions
+- `/bill/117/hr/3684/discussions/new` - Create new discussion
 
-- Real-time legislative data integration
-- Advanced search and filtering capabilities
-- User authentication and personalized bill tracking
-- Commenting and discussion moderation
-- Data visualization and analytics dashboard
-- API for third-party integrations
+## 📱 User Interface
 
-## Contributing
+### **Bill Page Layout**
 
-This project welcomes contributions to improve the legislative transparency experience. Whether you're interested in UI/UX improvements, data integration, or new features, we'd love your input.
+The bill page features a **6-tab navigation system** organizing complex legislative information:
 
-## Deploy on Vercel
+#### **1. Bill Tab** (Primary Content)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Two-column responsive layout**
+- **Left**: Bill summary and embedded PDF viewer
+- **Right**: Metadata sidebar with key information
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### **2. Discussions Tab**
+
+- GitHub-style discussion interface with user mentions
+- Markdown support for rich text formatting
+- Create new discussions with live preview
+- Timeline layout with user avatars and reply counts
+
+#### **3. Actions Tab**
+
+- Visual timeline with color-coded action types:
+  - 🔵 Committee actions
+  - 🟣 Floor proceedings
+  - 🟢 Became law
+  - 🔴 Presidential actions
+  - 🟠 Introductions/referrals
+
+#### **4. Amendments Tab**
+
+- Amendment tracking with descriptions and status
+- Links to amendment text and related actions
+
+#### **5. Sponsors Tab**
+
+- Visual party identification with color-coded badges
+- Separate sponsor and cosponsor sections
+- State and district information
+
+#### **6. Related Bills Tab**
+
+- Cross-references to related legislation
+- Helps understand legislative ecosystems
+
+### **Discussion Features**
+
+- **Rich Text Editing**: Markdown support with live preview
+- **Timeline View**: Clean comment threading
+- **Responsive Design**: Mobile-optimized discussion interface
+- **Empty States**: Helpful prompts for engagement
+
+## 🔧 Development
+
+### **Key Utilities**
+
+- `formatCongress()`: Converts numbers to ordinal format (117th Congress)
+- `getBillTypeAlias()`: User-friendly bill type names (HR → House Bill)
+- `getRelativeTime()`: Human-readable time formatting
+- `getActionTypeAlias()`: Readable action descriptions
+
+### **Data Structure**
+
+The project uses TypeScript interfaces for type safety:
+
+- `BillData`: Complete bill information
+- `Discussion`: Discussion thread structure
+- `Action`: Legislative action items
+- `Amendment`: Bill amendment data
+- `Sponsor`: Legislator information
+
+### **Mock Data**
+
+Currently uses comprehensive mock data demonstrating:
+
+- Real congressional bill structure
+- Discussion threads with markdown content
+- Legislative action timelines
+- Amendment tracking
+- Sponsor relationships
+
+## 🎯 Key Features in Detail
+
+### **Markdown & Mentions System**
+
+- Full markdown support via ReactMarkdown
+- Custom `@username` parsing and badge styling
+- Live preview functionality
+- Secure content rendering
+
+### **Navigation & UX**
+
+- Breadcrumb navigation with formatted congress numbers
+- Share functionality with clipboard integration
+- Watch/star buttons with dynamic counters
+- Toast notifications for user feedback
+
+### **Responsive Design**
+
+- Mobile-first approach
+- Tablet and desktop optimizations
+- Flexible layouts that adapt to content
+- Touch-friendly interactive elements
+
+## 🔮 Future Enhancements
+
+- **Real Data Integration**: Congress.gov API connectivity
+- **User Authentication**: Account creation and bill tracking
+- **Advanced Search**: Filter and search legislation
+- **Data Visualization**: Charts and analytics
+- **Notification System**: Bill status updates
+- **API Development**: Third-party integrations
+- **Enhanced Discussions**: Voting, moderation, notifications
+
+## 🤝 Contributing
+
+We welcome contributions! Areas of interest:
+
+- UI/UX improvements
+- Real data integration
+- Performance optimizations
+- Accessibility enhancements
+- Testing and documentation
+
+## 📄 License
+
+[Add your license here]
+
+## 🚀 Deployment
+
+Deploy easily on [Vercel](https://vercel.com):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/govhub)
+
+---
+
+**GovHub**: Making government accessible, one bill at a time.

@@ -23,10 +23,16 @@ const BillTab = ({ summary, pdfUrl, metadata }: BillTabProps) => (
           <h2 className="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">
             Summary
           </h2>
-          <p
-            className="prose prose-lg max-w-none"
-            dangerouslySetInnerHTML={{ __html: summary }}
-          />
+          {summary ? (
+            <p
+              className="prose prose-lg max-w-none"
+              dangerouslySetInnerHTML={{ __html: summary }}
+            />
+          ) : (
+            <p className="prose prose-lg max-w-none">
+              Congress is still working on a summary.
+            </p>
+          )}
         </div>
         {pdfUrl && (
           <div className="mt-8">

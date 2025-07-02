@@ -1,4 +1,4 @@
-import CongressPageComponent from "@/components/CongressPageComponent";
+import CongressPageComponent from "@/components/pages/CongressPageComponent";
 import { fetchBill } from "@/lib/fetchers/fetchBill";
 
 const BillByCongressPage = async ({

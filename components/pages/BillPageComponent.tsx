@@ -10,16 +10,16 @@ import {
   Link,
 } from "lucide-react";
 
-import DiscussionTab, { Discussion } from "./Discussion";
-import ActionsTab, { Action } from "./ActionsTab";
-import AmendmentsTab, { Amendment } from "./AmendmentsTab";
-import SponsorsTab, { Sponsor } from "./SponsorsTab";
-import RelatedBillsTab from "./RelatedBillsTab";
-import BillTab, { BillTabProps } from "./BillTab";
-import { BillData as BillDataType } from "./BillComponent";
-import Header, { BillStats } from "./Header";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import DiscussionTab, { Discussion } from "../bill/tabs/Discussion";
+import ActionsTab, { Action } from "../bill/tabs/ActionsTab";
+import AmendmentsTab, { Amendment } from "../bill/tabs/AmendmentsTab";
+import SponsorsTab, { Sponsor } from "../bill/tabs/SponsorsTab";
+import RelatedBillsTab from "../bill/tabs/RelatedBillsTab";
+import BillTab, { BillTabProps } from "../bill/tabs/BillTab";
+import { BillData as BillDataType } from "../bill/BillComponent";
+import Header, { BillStats } from "../layout/Header";
+import Navbar from "../layout/Navbar";
+import Footer from "../layout/Footer";
 
 interface BillData {
   congress: number;

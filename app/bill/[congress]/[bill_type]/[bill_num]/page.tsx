@@ -1,5 +1,5 @@
 import NotFoundPage from "@/app/not-found";
-import BillPageComponent from "@/components/BillPageComponent";
+import BillPageComponent from "@/components/pages/BillPageComponent";
 import { fetchSpecificBill } from "@/lib/fetchers/fetchBill";
 import { billStats, discussions } from "@/lib/mock/billData";
 
@@ -14,7 +14,6 @@ const BillPage = async ({
     bill_type,
     parseInt(bill_num)
   );
-  console.log(billData);
   if (!billData) {
     return <NotFoundPage />;
   }

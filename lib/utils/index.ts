@@ -23,11 +23,23 @@ export const getActionTypeAlias = (actionType?: string): string => {
 
 export const formatCongress = (congress: number) => {
   if (congress % 10 == 1) {
-    return `${congress}st Congress`;
+    if (congress % 100 == 11) {
+      return `${congress}th Congress`;
+    } else {
+      return `${congress}st Congress`;
+    }
   } else if (congress % 10 == 2) {
-    return `${congress}nd Congress`;
+    if (congress % 100 == 12) {
+      return `${congress}th Congress`;
+    } else {
+      return `${congress}nd Congress`;
+    }
   } else if (congress % 10 == 3) {
-    return `${congress}rd Congress`;
+    if (congress % 100 == 13) {
+      return `${congress}th Congress`;
+    } else {
+      return `${congress}rd Congress`;
+    }
   } else {
     return `${congress}th Congress`;
   }

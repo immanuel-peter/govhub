@@ -1,0 +1,337 @@
+diff --git a/app/bill/[congress]/[bill_type]/[bill_num]/discussions/[discussion_id]/page.tsx b/app/bill/[congress]/[bill_type]/[bill_num]/discussions/[discussion_id]/page.tsx
+index f4b5e3e..66a04e8 100644
+--- a/app/bill/[congress]/[bill_type]/[bill_num]/discussions/[discussion_id]/page.tsx
++++ b/app/bill/[congress]/[bill_type]/[bill_num]/discussions/[discussion_id]/page.tsx
+@@ -1,7 +1,7 @@
+ import NotFoundPage from "@/app/not-found";
+-import DiscussionPageComponent from "@/components/DiscussionPageComponent";
+-import Footer from "@/components/Footer";
+-import Navbar from "@/components/Navbar";
++import DiscussionPageComponent from "@/components/pages/DiscussionPageComponent";
++import Footer from "@/components/layout/Footer";
++import Navbar from "@/components/layout/Navbar";
+ 
+ const DiscussionPage = async ({
+   params,
+diff --git a/app/bill/[congress]/[bill_type]/[bill_num]/discussions/new/page.tsx b/app/bill/[congress]/[bill_type]/[bill_num]/discussions/new/page.tsx
+index 6d1127e..7c73414 100644
+--- a/app/bill/[congress]/[bill_type]/[bill_num]/discussions/new/page.tsx
++++ b/app/bill/[congress]/[bill_type]/[bill_num]/discussions/new/page.tsx
+@@ -1,7 +1,7 @@
+ import NotFoundPage from "@/app/not-found";
+-import Footer from "@/components/Footer";
+-import Navbar from "@/components/Navbar";
+-import NewDiscussionComponent from "@/components/NewDiscussionComponent";
++import Footer from "@/components/layout/Footer";
++import Navbar from "@/components/layout/Navbar";
++import NewDiscussionComponent from "@/components/pages/NewDiscussionComponent";
+ import { getBillTitle } from "@/lib/fetchers/fetchBill";
+ 
+ const NewDiscussionPage = async ({
+diff --git a/app/bill/[congress]/[bill_type]/[bill_num]/page.tsx b/app/bill/[congress]/[bill_type]/[bill_num]/page.tsx
+index dd61d69..c658e15 100644
+--- a/app/bill/[congress]/[bill_type]/[bill_num]/page.tsx
++++ b/app/bill/[congress]/[bill_type]/[bill_num]/page.tsx
+@@ -1,5 +1,5 @@
+ import NotFoundPage from "@/app/not-found";
+-import BillPageComponent from "@/components/BillPageComponent";
++import BillPageComponent from "@/components/pages/BillPageComponent";
+ import { fetchSpecificBill } from "@/lib/fetchers/fetchBill";
+ import { billStats, discussions } from "@/lib/mock/billData";
+ 
+@@ -14,7 +14,6 @@ const BillPage = async ({
+     bill_type,
+     parseInt(bill_num)
+   );
+-  console.log(billData);
+   if (!billData) {
+     return <NotFoundPage />;
+   }
+diff --git a/app/bill/[congress]/[bill_type]/page.tsx b/app/bill/[congress]/[bill_type]/page.tsx
+index 8d7cadf..4739a8e 100644
+--- a/app/bill/[congress]/[bill_type]/page.tsx
++++ b/app/bill/[congress]/[bill_type]/page.tsx
+@@ -1,4 +1,4 @@
+-import BillTypePageComponent from "@/components/BillTypePageComponent";
++import BillTypePageComponent from "@/components/pages/BillTypePageComponent";
+ import { fetchBill } from "@/lib/fetchers/fetchBill";
+ 
+ const BillByTypePage = async ({
+diff --git a/app/bill/[congress]/page.tsx b/app/bill/[congress]/page.tsx
+index e3c3581..3207e8d 100644
+--- a/app/bill/[congress]/page.tsx
++++ b/app/bill/[congress]/page.tsx
+@@ -1,4 +1,4 @@
+-import CongressPageComponent from "@/components/CongressPageComponent";
++import CongressPageComponent from "@/components/pages/CongressPageComponent";
+ import { fetchBill } from "@/lib/fetchers/fetchBill";
+ 
+ const BillByCongressPage = async ({
+diff --git a/app/not-found.tsx b/app/not-found.tsx
+index bb69d4d..b8f6533 100644
+--- a/app/not-found.tsx
++++ b/app/not-found.tsx
+@@ -1,6 +1,6 @@
+ import { FileX, Home } from "lucide-react";
+-import Navbar from "@/components/Navbar";
+-import Footer from "@/components/Footer";
++import Navbar from "@/components/layout/Navbar";
++import Footer from "@/components/layout/Footer";
+ import Link from "next/link";
+ 
+ const NotFoundPage = () => {
+diff --git a/app/page.tsx b/app/page.tsx
+index 4a50e30..090fd02 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -1,7 +1,7 @@
+-import Footer from "@/components/Footer";
+-import Navbar from "@/components/Navbar";
+-import LandingSlides from "@/components/LandingSlides";
+-import TrendingBills from "@/components/TrendingBills";
++import Footer from "@/components/layout/Footer";
++import Navbar from "@/components/layout/Navbar";
++import LandingSlides from "@/components/pages/LandingSlides";
++import TrendingBills from "@/components/pages/TrendingBills";
+ 
+ import { trendingBills } from "@/lib/mock/trendingBills";
+ 
+diff --git a/components/BillComponent.tsx b/components/bill/BillComponent.tsx
+similarity index 100%
+rename from components/BillComponent.tsx
+rename to components/bill/BillComponent.tsx
+diff --git a/components/ActionsTab.tsx b/components/bill/tabs/ActionsTab.tsx
+similarity index 100%
+rename from components/ActionsTab.tsx
+rename to components/bill/tabs/ActionsTab.tsx
+diff --git a/components/AmendmentsTab.tsx b/components/bill/tabs/AmendmentsTab.tsx
+similarity index 100%
+rename from components/AmendmentsTab.tsx
+rename to components/bill/tabs/AmendmentsTab.tsx
+diff --git a/components/BillTab.tsx b/components/bill/tabs/BillTab.tsx
+similarity index 100%
+rename from components/BillTab.tsx
+rename to components/bill/tabs/BillTab.tsx
+diff --git a/components/Discussion.tsx b/components/bill/tabs/Discussion.tsx
+similarity index 100%
+rename from components/Discussion.tsx
+rename to components/bill/tabs/Discussion.tsx
+diff --git a/components/RelatedBillsTab.tsx b/components/bill/tabs/RelatedBillsTab.tsx
+similarity index 91%
+rename from components/RelatedBillsTab.tsx
+rename to components/bill/tabs/RelatedBillsTab.tsx
+index 4d04a07..9022d81 100644
+--- a/components/RelatedBillsTab.tsx
++++ b/components/bill/tabs/RelatedBillsTab.tsx
+@@ -1,4 +1,4 @@
+-import BillComponent, { BillData as BillDataType } from "./BillComponent";
++import BillComponent, { BillData as BillDataType } from "../BillComponent";
+ 
+ const RelatedBillsTab = ({
+   relatedBills,
+diff --git a/components/SponsorsTab.tsx b/components/bill/tabs/SponsorsTab.tsx
+similarity index 100%
+rename from components/SponsorsTab.tsx
+rename to components/bill/tabs/SponsorsTab.tsx
+diff --git a/components/Footer.tsx b/components/layout/Footer.tsx
+similarity index 100%
+rename from components/Footer.tsx
+rename to components/layout/Footer.tsx
+diff --git a/components/Header.tsx b/components/layout/Header.tsx
+similarity index 100%
+rename from components/Header.tsx
+rename to components/layout/Header.tsx
+diff --git a/components/Navbar.tsx b/components/layout/Navbar.tsx
+similarity index 100%
+rename from components/Navbar.tsx
+rename to components/layout/Navbar.tsx
+diff --git a/components/BillPageComponent.tsx b/components/pages/BillPageComponent.tsx
+similarity index 85%
+rename from components/BillPageComponent.tsx
+rename to components/pages/BillPageComponent.tsx
+index ce4d1f4..05c2e94 100644
+--- a/components/BillPageComponent.tsx
++++ b/components/pages/BillPageComponent.tsx
+@@ -10,16 +10,16 @@ import {
+   Link,
+ } from "lucide-react";
+ 
+-import DiscussionTab, { Discussion } from "./Discussion";
+-import ActionsTab, { Action } from "./ActionsTab";
+-import AmendmentsTab, { Amendment } from "./AmendmentsTab";
+-import SponsorsTab, { Sponsor } from "./SponsorsTab";
+-import RelatedBillsTab from "./RelatedBillsTab";
+-import BillTab, { BillTabProps } from "./BillTab";
+-import { BillData as BillDataType } from "./BillComponent";
+-import Header, { BillStats } from "./Header";
+-import Navbar from "./Navbar";
+-import Footer from "./Footer";
++import DiscussionTab, { Discussion } from "../bill/tabs/Discussion";
++import ActionsTab, { Action } from "../bill/tabs/ActionsTab";
++import AmendmentsTab, { Amendment } from "../bill/tabs/AmendmentsTab";
++import SponsorsTab, { Sponsor } from "../bill/tabs/SponsorsTab";
++import RelatedBillsTab from "../bill/tabs/RelatedBillsTab";
++import BillTab, { BillTabProps } from "../bill/tabs/BillTab";
++import { BillData as BillDataType } from "../bill/BillComponent";
++import Header, { BillStats } from "../layout/Header";
++import Navbar from "../layout/Navbar";
++import Footer from "../layout/Footer";
+ 
+ interface BillData {
+   congress: number;
+diff --git a/components/BillTypePageComponent.tsx b/components/pages/BillTypePageComponent.tsx
+similarity index 88%
+rename from components/BillTypePageComponent.tsx
+rename to components/pages/BillTypePageComponent.tsx
+index 22c53d8..74ec8fc 100644
+--- a/components/BillTypePageComponent.tsx
++++ b/components/pages/BillTypePageComponent.tsx
+@@ -2,10 +2,10 @@
+ 
+ import { ChevronsRight } from "lucide-react";
+ 
+-import Navbar from "@/components/Navbar";
+-import Footer from "@/components/Footer";
++import Navbar from "@/components/layout/Navbar";
++import Footer from "@/components/layout/Footer";
+ import { getBillTypeAlias, formatCongress } from "@/lib/utils";
+-import BillComponent, { BillData as BillDataType } from "./BillComponent";
++import BillComponent, { BillData as BillDataType } from "../bill/BillComponent";
+ import Link from "next/link";
+ 
+ const BillTypePageComponent = ({
+diff --git a/components/CongressPageComponent.tsx b/components/pages/CongressPageComponent.tsx
+similarity index 84%
+rename from components/CongressPageComponent.tsx
+rename to components/pages/CongressPageComponent.tsx
+index 41b55c0..5daf8fb 100644
+--- a/components/CongressPageComponent.tsx
++++ b/components/pages/CongressPageComponent.tsx
+@@ -1,8 +1,8 @@
+ "use client";
+ 
+-import Navbar from "@/components/Navbar";
+-import Footer from "@/components/Footer";
+-import BillComponent, { BillData as BillDataType } from "./BillComponent";
++import Navbar from "@/components/layout/Navbar";
++import Footer from "@/components/layout/Footer";
++import BillComponent, { BillData as BillDataType } from "../bill/BillComponent";
+ import { formatCongress } from "@/lib/utils";
+ 
+ const CongressPageComponent = ({
+diff --git a/components/DiscussionPageComponent.tsx b/components/pages/DiscussionPageComponent.tsx
+similarity index 100%
+rename from components/DiscussionPageComponent.tsx
+rename to components/pages/DiscussionPageComponent.tsx
+diff --git a/components/LandingSlides.tsx b/components/pages/LandingSlides.tsx
+similarity index 100%
+rename from components/LandingSlides.tsx
+rename to components/pages/LandingSlides.tsx
+diff --git a/components/NewDiscussionComponent.tsx b/components/pages/NewDiscussionComponent.tsx
+similarity index 100%
+rename from components/NewDiscussionComponent.tsx
+rename to components/pages/NewDiscussionComponent.tsx
+diff --git a/components/TrendingBills.tsx b/components/pages/TrendingBills.tsx
+similarity index 100%
+rename from components/TrendingBills.tsx
+rename to components/pages/TrendingBills.tsx
+diff --git a/lib/fetchers/fetchBill.ts b/lib/fetchers/fetchBill.ts
+index 1d030d7..6819d44 100644
+--- a/lib/fetchers/fetchBill.ts
++++ b/lib/fetchers/fetchBill.ts
+@@ -1,7 +1,7 @@
+-import { Action } from "@/components/ActionsTab";
+-import { Amendment } from "@/components/AmendmentsTab";
+-import { BillData as BillDataType } from "@/components/BillComponent";
+-import { Sponsor } from "@/components/SponsorsTab";
++import { Action } from "@/components/bill/tabs/ActionsTab";
++import { Amendment } from "@/components/bill/tabs/AmendmentsTab";
++import { BillData as BillDataType } from "@/components/bill/BillComponent";
++import { Sponsor } from "@/components/bill/tabs/SponsorsTab";
+ 
+ const BASE_URL = "https://api.congress.gov/v3";
+ const API_KEY = process.env.CONGRESS_API_KEY;
+diff --git a/lib/utils/index.ts b/lib/utils/index.ts
+index 692b076..b7af1f9 100644
+--- a/lib/utils/index.ts
++++ b/lib/utils/index.ts
+@@ -23,11 +23,23 @@ export const getActionTypeAlias = (actionType?: string): string => {
+ 
+ export const formatCongress = (congress: number) => {
+   if (congress % 10 == 1) {
+-    return `${congress}st Congress`;
++    if (congress % 100 == 11) {
++      return `${congress}th Congress`;
++    } else {
++      return `${congress}st Congress`;
++    }
+   } else if (congress % 10 == 2) {
+-    return `${congress}nd Congress`;
++    if (congress % 100 == 12) {
++      return `${congress}th Congress`;
++    } else {
++      return `${congress}nd Congress`;
++    }
+   } else if (congress % 10 == 3) {
+-    return `${congress}rd Congress`;
++    if (congress % 100 == 13) {
++      return `${congress}th Congress`;
++    } else {
++      return `${congress}rd Congress`;
++    }
+   } else {
+     return `${congress}th Congress`;
+   }
+diff --git a/middleware.ts b/middleware.ts
+new file mode 100644
+index 0000000..3033d62
+--- /dev/null
++++ b/middleware.ts
+@@ -0,0 +1,47 @@
++// middleware.ts
++import { NextRequest, NextResponse } from "next/server";
++
++const billTypeSlugToShort: Record<string, string> = {
++  "house-bill": "hr",
++  "senate-bill": "s",
++  "house-amendment": "hamdt",
++  "senate-amendment": "samdt",
++  "house-resolution": "hres",
++  "senate-resolution": "sres",
++  "house-joint-resolution": "hjres",
++  "senate-joint-resolution": "sjres",
++  "house-concurrent-resolution": "hconres",
++  "senate-concurrent-resolution": "sconres",
++};
++
++function parseCongress(congressStr: string) {
++  // E.g., "102nd-congress" -> 102
++  const match = congressStr.match(/^(\d+)(?:st|nd|rd|th)-congress$/);
++  if (!match) return null;
++  return match[1];
++}
++
++export function middleware(req: NextRequest) {
++  const url = req.nextUrl.clone();
++  // Only act on URLs matching the old pattern
++  const billPattern =
++    /^\/bill\/(\d{1,3}(?:st|nd|rd|th)-congress)\/([a-z-]+)\/(\d+)\/?$/i;
++  const match = url.pathname.match(billPattern);
++
++  if (match) {
++    const [, congressStr, billTypeSlug, billNum] = match;
++    const congress = parseCongress(congressStr);
++    const billType =
++      billTypeSlugToShort[billTypeSlug.toLowerCase()] || billTypeSlug;
++    if (congress && billType) {
++      url.pathname = `/bill/${congress}/${billType}/${billNum}`;
++      return NextResponse.redirect(url, 308); // Permanent redirect
++    }
++  }
++  // Continue if no match
++  return NextResponse.next();
++}
++
++export const config = {
++  matcher: ["/bill/:congressStr/:billTypeStr/:billNum*"],
++};

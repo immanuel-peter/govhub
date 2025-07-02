@@ -1,4 +1,4 @@
-import BillTypePageComponent from "@/components/BillTypePageComponent";
+import BillTypePageComponent from "@/components/pages/BillTypePageComponent";
 import { fetchBill } from "@/lib/fetchers/fetchBill";
 
 const BillByTypePage = async ({

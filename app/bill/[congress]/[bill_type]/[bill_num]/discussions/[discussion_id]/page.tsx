@@ -1,7 +1,7 @@
 import NotFoundPage from "@/app/not-found";
-import DiscussionPageComponent from "@/components/DiscussionPageComponent";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import DiscussionPageComponent from "@/components/pages/DiscussionPageComponent";
+import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
 
 const DiscussionPage = async ({
   params,

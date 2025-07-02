@@ -1,8 +1,8 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import BillComponent, { BillData as BillDataType } from "./BillComponent";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import BillComponent, { BillData as BillDataType } from "../bill/BillComponent";
 import { formatCongress } from "@/lib/utils";
 
 const CongressPageComponent = ({

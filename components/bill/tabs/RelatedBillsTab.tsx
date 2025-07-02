@@ -1,4 +1,4 @@
-import BillComponent, { BillData as BillDataType } from "./BillComponent";
+import BillComponent, { BillData as BillDataType } from "../BillComponent";
 
 const RelatedBillsTab = ({
   relatedBills,

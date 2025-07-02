@@ -1,7 +1,7 @@
 import NotFoundPage from "@/app/not-found";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import NewDiscussionComponent from "@/components/NewDiscussionComponent";
+import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import NewDiscussionComponent from "@/components/pages/NewDiscussionComponent";
 import { getBillTitle } from "@/lib/fetchers/fetchBill";
 
 const NewDiscussionPage = async ({

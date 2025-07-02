@@ -1,7 +1,7 @@
-import { Action } from "@/components/ActionsTab";
-import { Amendment } from "@/components/AmendmentsTab";
-import { BillData as BillDataType } from "@/components/BillComponent";
-import { Sponsor } from "@/components/SponsorsTab";
+import { Action } from "@/components/bill/tabs/ActionsTab";
+import { Amendment } from "@/components/bill/tabs/AmendmentsTab";
+import { BillData as BillDataType } from "@/components/bill/BillComponent";
+import { Sponsor } from "@/components/bill/tabs/SponsorsTab";
 
 const BASE_URL = "https://api.congress.gov/v3";
 const API_KEY = process.env.CONGRESS_API_KEY;

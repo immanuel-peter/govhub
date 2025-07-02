@@ -1,7 +1,7 @@
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import LandingSlides from "@/components/LandingSlides";
-import TrendingBills from "@/components/TrendingBills";
+import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import LandingSlides from "@/components/pages/LandingSlides";
+import TrendingBills from "@/components/pages/TrendingBills";
 
 import { trendingBills } from "@/lib/mock/trendingBills";
 

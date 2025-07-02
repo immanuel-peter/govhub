@@ -80,7 +80,7 @@ components/
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/immanuel-peter/govhub
+git clone https://github.com/immanuel-peter/govhub.git
 cd govhub
 ```
 

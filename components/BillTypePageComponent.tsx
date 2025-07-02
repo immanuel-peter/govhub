@@ -4,8 +4,9 @@ import { ChevronsRight } from "lucide-react";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { getBillTypeAlias } from "@/lib/utils";
+import { getBillTypeAlias, formatCongress } from "@/lib/utils";
 import BillComponent, { BillData as BillDataType } from "./BillComponent";
+import Link from "next/link";
 
 const BillTypePageComponent = ({
   params,
@@ -23,17 +24,14 @@ const BillTypePageComponent = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-start items-center">
           <div className="flex items-center space-x-2 text-sm text-gray-500">
-            <span
-              onClick={() => {}}
+            <Link
+              href={`/bill/${congress}`}
               className="font-semibold text-blue-600 cursor-pointer"
             >
-              {congress}th Congress
-            </span>
+              {formatCongress(parseInt(congress))}
+            </Link>
             <ChevronsRight className="w-4 h-4 text-gray-400" />
-            <span
-              onClick={() => {}}
-              className="font-semibold text-blue-600 cursor-pointer"
-            >
+            <span onClick={() => {}} className="font-semibold">
               {getBillTypeAlias(bill_type)}
             </span>
           </div>

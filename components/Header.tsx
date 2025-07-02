@@ -1,5 +1,5 @@
 import { ChevronsRight, Eye, StarIcon, Share2 } from "lucide-react";
-import { getBillTypeAlias } from "@/lib/utils";
+import { formatCongress, getBillTypeAlias } from "@/lib/utils";
 import Link from "next/link";
 
 interface HeaderProps {
@@ -27,18 +27,6 @@ const LawBadge = () => (
     Law
   </span>
 );
-
-const formatCongress = (congress: number) => {
-  if (congress % 10 == 1) {
-    return `${congress}st Congress`;
-  } else if (congress % 10 == 2) {
-    return `${congress}nd Congress`;
-  } else if (congress % 10 == 3) {
-    return `${congress}rd Congress`;
-  } else {
-    return `${congress}th Congress`;
-  }
-};
 
 const Header = ({
   congress,

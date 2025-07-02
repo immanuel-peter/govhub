@@ -20,3 +20,15 @@ export const getActionTypeAlias = (actionType?: string): string => {
 
   return alias || actionType;
 };
+
+export const formatCongress = (congress: number) => {
+  if (congress % 10 == 1) {
+    return `${congress}st Congress`;
+  } else if (congress % 10 == 2) {
+    return `${congress}nd Congress`;
+  } else if (congress % 10 == 3) {
+    return `${congress}rd Congress`;
+  } else {
+    return `${congress}th Congress`;
+  }
+};

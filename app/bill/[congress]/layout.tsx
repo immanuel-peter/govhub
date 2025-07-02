@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
+import { formatCongress } from "@/lib/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,9 +13,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Bills by Congress",
-  description: "Bills by Congress",
+// export const metadata: Metadata = {
+//   title: "Bills by Congress",
+//   description: "Bills by Congress",
+// };
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ congress: string }>;
+}) => {
+  const { congress } = await params;
+  return {
+    title: `${formatCongress(parseInt(congress))} Bills`,
+    description: `${formatCongress(parseInt(congress))} Bills`,
+  };
 };
 
 export default function RootLayout({

@@ -12,7 +12,6 @@ const BillPage = async ({
     bill_type,
     parseInt(bill_num)
   );
-  console.log(billData);
   return <BillPageComponent billData={billData} />;
 };
 

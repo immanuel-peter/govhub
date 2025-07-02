@@ -38,7 +38,6 @@ export const fetchSpecificBill = async (
   const url = `${BASE_URL}/bill/${congress}/${bill_type}/${bill_number}?api_key=${API_KEY}&format=json`;
   const response = await fetch(url);
   const data = await response.json();
-  console.log(data);
 
   const {
     type: billType,

@@ -3,6 +3,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BillComponent, { BillData as BillDataType } from "./BillComponent";
+import { formatCongress } from "@/lib/utils";
 
 const CongressPageComponent = ({
   params,
@@ -20,11 +21,8 @@ const CongressPageComponent = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-start items-center">
           <div className="flex items-center space-x-2 text-sm text-gray-500">
-            <span
-              onClick={() => {}}
-              className="font-semibold text-blue-600 cursor-pointer"
-            >
-              {congress}th Congress
+            <span className="font-semibold text-blue-600">
+              {formatCongress(parseInt(congress))}
             </span>
           </div>
         </div>

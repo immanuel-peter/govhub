@@ -107,6 +107,35 @@ export const billData = {
   ],
 };
 
+export const discussions = [
+  {
+    id: "1",
+    title: "Clarification on Section 301 funding allocation",
+    author: "civicHacker",
+    createdAt: "2025-06-29",
+    replyCount: 5,
+  },
+  {
+    id: "2",
+    title: "Potential impact on small businesses",
+    author: "policyAnalyst22",
+    createdAt: "2025-06-26",
+    replyCount: 12,
+  },
+  {
+    id: "3",
+    title: "Question about the implementation timeline",
+    author: "concernedCitizen",
+    createdAt: "2025-06-24",
+    replyCount: 3,
+  },
+];
+
+export const billStats = {
+  watchers: 10,
+  stars: 16,
+};
+
 export const billTypeData = [
   {
     title: "Surface Transportation Reauthorization Act of 2021",

@@ -1,5 +1,7 @@
+import NotFoundPage from "@/app/not-found";
 import BillPageComponent from "@/components/BillPageComponent";
 import { fetchSpecificBill } from "@/lib/fetchers/fetchBill";
+import { billStats, discussions } from "@/lib/mock/billData";
 
 const BillPage = async ({
   params,
@@ -12,7 +14,12 @@ const BillPage = async ({
     bill_type,
     parseInt(bill_num)
   );
-  return <BillPageComponent billData={billData} />;
+  if (!billData) {
+    return <NotFoundPage />;
+  }
+  return (
+    <BillPageComponent billData={billData} discussions={[]} stats={billStats} />
+  );
 };
 
 export default BillPage;

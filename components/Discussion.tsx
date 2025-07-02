@@ -1,61 +1,79 @@
-import { MessageSquare } from "lucide-react";
+import { MessageSquare, Clock, MessageCircle } from "lucide-react";
+import { getRelativeTime } from "@/lib/utils";
 
-const DiscussionTab = () => (
-  <div className="p-4 md:p-6 lg:p-8 min-h-[600px]">
-    <div className="flex justify-between items-center mb-6">
-      <h2 className="text-xl font-semibold text-gray-800">Discussions</h2>
-      <button className="px-4 py-2 bg-green-600 text-white rounded-md text-sm font-medium hover:bg-green-700 cursor-pointer">
-        New discussion
-      </button>
+export interface Discussion {
+  id: string;
+  title: string;
+  author: string;
+  createdAt: string;
+  replyCount: number;
+}
+
+interface DiscussionTabProps {
+  discussions: Discussion[];
+}
+
+const DiscussionTab = ({ discussions }: DiscussionTabProps) => {
+  if (discussions.length === 0) {
+    return (
+      <div className="p-4 md:p-6 lg:p-8 min-h-[490px]">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-semibold text-gray-800">Discussions</h2>
+          <button className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 cursor-pointer">
+            New discussion
+          </button>
+        </div>
+        <p className="text-gray-600 font-semibold">Start a discussion!</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-4 md:p-6 lg:p-8 min-h-[600px]">
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-xl font-semibold text-gray-800">Discussions</h2>
+        <button className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 cursor-pointer">
+          New discussion
+        </button>
+      </div>
+      <div className="border border-gray-200 rounded-lg">
+        {discussions.map((discussion, index) => (
+          <div
+            key={discussion.id}
+            className={`p-4 flex items-center space-x-4 ${
+              index < discussions.length - 1 ? "border-b" : ""
+            }`}
+          >
+            <MessageSquare className="w-6 h-6 text-blue-500" />
+            <div>
+              <a
+                href="#"
+                className="font-semibold text-gray-800 hover:text-blue-600"
+              >
+                {discussion.title}
+              </a>
+              <div className="flex items-center space-x-4 text-sm text-gray-500">
+                <span>
+                  Opened by{" "}
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                    {discussion.author}
+                  </span>
+                </span>
+                <div className="flex items-center space-x-1">
+                  <Clock className="w-4 h-4" />
+                  <span>{getRelativeTime(discussion.createdAt)}</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <MessageCircle className="w-4 h-4" />
+                  <span>{discussion.replyCount} replies</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
-    <div className="border border-gray-200 rounded-lg">
-      <div className="p-4 flex items-center space-x-4 border-b">
-        <MessageSquare className="w-6 h-6 text-green-500" />
-        <div>
-          <a
-            href="#"
-            className="font-semibold text-gray-800 hover:text-blue-600"
-          >
-            Clarification on Section 301 funding allocation
-          </a>
-          <p className="text-sm text-gray-500">
-            Opened by <span className="font-medium">civicHacker</span> 2 days
-            ago · 5 replies
-          </p>
-        </div>
-      </div>
-      <div className="p-4 flex items-center space-x-4 border-b">
-        <MessageSquare className="w-6 h-6 text-green-500" />
-        <div>
-          <a
-            href="#"
-            className="font-semibold text-gray-800 hover:text-blue-600"
-          >
-            Potential impact on small businesses
-          </a>
-          <p className="text-sm text-gray-500">
-            Opened by <span className="font-medium">policyAnalyst22</span> 5
-            days ago · 12 replies
-          </p>
-        </div>
-      </div>
-      <div className="p-4 flex items-center space-x-4">
-        <MessageSquare className="w-6 h-6 text-green-500" />
-        <div>
-          <a
-            href="#"
-            className="font-semibold text-gray-800 hover:text-blue-600"
-          >
-            Question about the implementation timeline
-          </a>
-          <p className="text-sm text-gray-500">
-            Opened by <span className="font-medium">concernedCitizen</span> 1
-            week ago · 3 replies
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
 export default DiscussionTab;

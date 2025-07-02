@@ -1,4 +1,5 @@
 import { MessageSquare, ScrollText } from "lucide-react";
+import Link from "next/link";
 
 interface TrendingBill {
   rank: number;
@@ -38,9 +39,12 @@ const TrendingBills = ({
                 </span>
                 <div className="min-w-0 flex-auto">
                   <p className="text-sm font-semibold leading-6 text-gray-900">
-                    <a href="#" className="hover:underline">
+                    <Link
+                      href={`/bills/${bill.congress}/${bill.type}/${bill.number}`}
+                      className="hover:underline"
+                    >
                       {bill.type} {bill.number}: {bill.title}
-                    </a>
+                    </Link>
                   </p>
                   <div className="mt-1 flex items-center gap-x-4 text-xs leading-5 text-gray-500">
                     <div className="flex items-center gap-x-1">
@@ -54,12 +58,12 @@ const TrendingBills = ({
                   </div>
                 </div>
               </div>
-              <a
-                href="#"
+              <Link
+                href={`/bills/${bill.congress}/${bill.type}/${bill.number}`}
                 className="rounded-full bg-white px-3.5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-100"
               >
                 View Bill
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

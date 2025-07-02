@@ -40,19 +40,9 @@ const SponsorCard = ({ sponsor }: { sponsor: Sponsor }) => (
 );
 
 const SponsorsTab = ({ sponsors, cosponsors }: SponsorsTabProps) => {
-  if (sponsors.length === 0 && cosponsors.length === 0) {
-    return (
-      <div className="p-4 md:p-6 lg:p-8 min-h-[600px] flex items-center justify-center">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">
-          No sponsors or cosponsors found
-        </h2>
-      </div>
-    );
-  }
-
   return (
     <div className="p-4 md:p-6 lg:p-8 min-h-[600px]">
-      {sponsors.length > 0 && (
+      {sponsors.length > 0 ? (
         <div>
           <h2 className="text-xl font-semibold text-gray-800 mb-4">
             Sponsors ({sponsors.length})
@@ -62,6 +52,11 @@ const SponsorsTab = ({ sponsors, cosponsors }: SponsorsTabProps) => {
               <SponsorCard key={index} sponsor={sponsor} />
             ))}
           </div>
+        </div>
+      ) : (
+        <div>
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">Sponsors</h2>
+          <p className="text-gray-600">No sponsors found for this bill.</p>
         </div>
       )}
       {cosponsors.length > 0 && (

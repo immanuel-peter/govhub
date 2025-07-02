@@ -10,14 +10,14 @@ import {
   Link,
 } from "lucide-react";
 
-import DiscussionTab from "./Discussion";
+import DiscussionTab, { Discussion } from "./Discussion";
 import ActionsTab, { Action } from "./ActionsTab";
 import AmendmentsTab, { Amendment } from "./AmendmentsTab";
 import SponsorsTab, { Sponsor } from "./SponsorsTab";
 import RelatedBillsTab from "./RelatedBillsTab";
 import BillTab, { BillTabProps } from "./BillTab";
 import { BillData as BillDataType } from "./BillComponent";
-import Header from "./Header";
+import Header, { BillStats } from "./Header";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -56,7 +56,15 @@ const Tab = ({ icon, label, active, onClick }: TabProps) => (
   </button>
 );
 
-const BillPageComponent = ({ billData }: { billData: BillData }) => {
+const BillPageComponent = ({
+  billData,
+  discussions,
+  stats,
+}: {
+  billData: BillData;
+  discussions: Discussion[];
+  stats: BillStats;
+}) => {
   const {
     billTabProps,
     actions,
@@ -81,7 +89,7 @@ const BillPageComponent = ({ billData }: { billData: BillData }) => {
   const renderTabContent = () => {
     switch (activeTab) {
       case "Discussion":
-        return <DiscussionTab />;
+        return <DiscussionTab discussions={discussions} />;
       case "Actions":
         return <ActionsTab actions={actions} />;
       case "Amendments":
@@ -108,6 +116,7 @@ const BillPageComponent = ({ billData }: { billData: BillData }) => {
         billNumber={billData.billNumber}
         title={billData.title}
         isLaw={billData.isLaw}
+        stats={stats}
       />
 
       <div className="border-b border-gray-200">

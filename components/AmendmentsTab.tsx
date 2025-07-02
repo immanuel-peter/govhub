@@ -14,9 +14,8 @@ const AmendmentsTab = ({ amendments }: { amendments: Amendment[] }) => {
   if (amendments.length === 0) {
     return (
       <div className="p-4 md:p-6 lg:p-8 min-h-[600px] flex items-center justify-center">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">
-          No amendments found
-        </h2>
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">Amendments</h2>
+        <p className="text-gray-600">No amendments found for this bill.</p>
       </div>
     );
   }

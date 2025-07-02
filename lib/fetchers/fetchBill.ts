@@ -37,6 +37,9 @@ export const fetchSpecificBill = async (
 ) => {
   const url = `${BASE_URL}/bill/${congress}/${bill_type}/${bill_number}?api_key=${API_KEY}&format=json`;
   const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch bill: ${response.statusText}`);
+  }
   const data = await response.json();
 
   const {

@@ -102,7 +102,6 @@ npm run dev
 ### Example Routes
 
 - `/bill/117/hr/3684` - Infrastructure Investment and Jobs Act
-- `/bill/117/hr/3684/discussions` - Bill discussions
 - `/bill/117/hr/3684/discussions/new` - Create new discussion
 
 ## 📱 User Interface

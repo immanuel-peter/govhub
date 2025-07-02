@@ -40,7 +40,7 @@ const TrendingBills = ({
                 <div className="min-w-0 flex-auto">
                   <p className="text-sm font-semibold leading-6 text-gray-900">
                     <Link
-                      href={`/bills/${bill.congress}/${bill.type}/${bill.number}`}
+                      href={`/bill/${bill.congress}/${bill.type}/${bill.number}`}
                       className="hover:underline"
                     >
                       {bill.type} {bill.number}: {bill.title}
@@ -59,8 +59,8 @@ const TrendingBills = ({
                 </div>
               </div>
               <Link
-                href={`/bills/${bill.congress}/${bill.type}/${bill.number}`}
-                className="rounded-full bg-white px-3.5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-100"
+                href={`/bill/${bill.congress}/${bill.type}/${bill.number}`}
+                className="rounded-full bg-white px-3.5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-100 flex-shrink-0"
               >
                 View Bill
               </Link>

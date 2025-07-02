@@ -11,7 +11,7 @@ export const fetchBill = async (
   bill_type?: string
 ): Promise<BillDataType[]> => {
   const url = bill_type
-    ? `${BASE_URL}/bill/${congress}/${bill_type}`
+    ? `${BASE_URL}/bill/${congress}/${bill_type.toLowerCase()}`
     : `${BASE_URL}/bill/${congress}`;
   const response = await fetch(
     `${url}?api_key=${API_KEY}&sort=updateDate+desc&format=json`
@@ -35,7 +35,7 @@ export const fetchSpecificBill = async (
   bill_type: string,
   bill_number: number
 ) => {
-  const url = `${BASE_URL}/bill/${congress}/${bill_type}/${bill_number}?api_key=${API_KEY}&format=json`;
+  const url = `${BASE_URL}/bill/${congress}/${bill_type.toLowerCase()}/${bill_number}?api_key=${API_KEY}&format=json`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Failed to fetch bill: ${response.statusText}`);
@@ -105,7 +105,7 @@ const fetchBillSummary = async (
   bill_type: string,
   bill_number: number
 ): Promise<string> => {
-  const url = `${BASE_URL}/bill/${congress}/${bill_type}/${bill_number}/summaries?api_key=${API_KEY}&format=json`;
+  const url = `${BASE_URL}/bill/${congress}/${bill_type.toLowerCase()}/${bill_number}/summaries?api_key=${API_KEY}&format=json`;
   const response = await fetch(url);
   const data = await response.json();
 
@@ -130,7 +130,7 @@ const fetchBillPdfUrl = async (
   bill_type: string,
   bill_number: number
 ): Promise<string> => {
-  const url = `${BASE_URL}/bill/${congress}/${bill_type}/${bill_number}/text?api_key=${API_KEY}&format=json`;
+  const url = `${BASE_URL}/bill/${congress}/${bill_type.toLowerCase()}/${bill_number}/text?api_key=${API_KEY}&format=json`;
   const response = await fetch(url);
   const data = await response.json();
 
@@ -153,7 +153,7 @@ const fetchBillActions = async (
   bill_type: string,
   bill_number: number
 ): Promise<Action[]> => {
-  const url = `${BASE_URL}/bill/${congress}/${bill_type}/${bill_number}/actions?api_key=${API_KEY}&format=json`;
+  const url = `${BASE_URL}/bill/${congress}/${bill_type.toLowerCase()}/${bill_number}/actions?api_key=${API_KEY}&format=json`;
   const response = await fetch(url);
   const data = await response.json();
 
@@ -173,7 +173,7 @@ const fetchBillAmendments = async (
   bill_type: string,
   bill_number: number
 ): Promise<Amendment[]> => {
-  const url = `${BASE_URL}/bill/${congress}/${bill_type}/${bill_number}/amendments?api_key=${API_KEY}&format=json`;
+  const url = `${BASE_URL}/bill/${congress}/${bill_type.toLowerCase()}/${bill_number}/amendments?api_key=${API_KEY}&format=json`;
   const response = await fetch(url);
   const data = await response.json();
 
@@ -208,7 +208,7 @@ const fetchBillSponsors = async (
   bill_number: number,
   sponsor_type: "sponsor" | "cosponsor"
 ): Promise<Sponsor[]> => {
-  const url = `${BASE_URL}/bill/${congress}/${bill_type}/${bill_number}/cosponsors?api_key=${API_KEY}&format=json`;
+  const url = `${BASE_URL}/bill/${congress}/${bill_type.toLowerCase()}/${bill_number}/cosponsors?api_key=${API_KEY}&format=json`;
   const response = await fetch(url);
   const data = await response.json();
 
@@ -232,7 +232,7 @@ const fetchBillRelatedBills = async (
   bill_type: string,
   bill_number: number
 ): Promise<BillDataType[]> => {
-  const url = `${BASE_URL}/bill/${congress}/${bill_type}/${bill_number}/relatedbills?api_key=${API_KEY}&format=json`;
+  const url = `${BASE_URL}/bill/${congress}/${bill_type.toLowerCase()}/${bill_number}/relatedbills?api_key=${API_KEY}&format=json`;
   const response = await fetch(url);
   const data = await response.json();
 

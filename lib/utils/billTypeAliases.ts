@@ -1,5 +1,5 @@
 export const billTypeAliases: Record<string, string> = {
-  hr: "House Resolution",
+  hr: "House Bill",
   hamdt: "House Amendment",
   hres: "House Resolution",
   hjres: "House Joint Resolution",

@@ -13,11 +13,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// export const metadata: Metadata = {
-//   title: "Bills by Type",
-//   description: "Bills by Type",
-// };
-
 export const generateMetadata = async ({
   params,
 }: {

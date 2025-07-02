@@ -7,7 +7,7 @@ const RelatedBillsTab = ({
 }) => {
   if (relatedBills.length === 0) {
     return (
-      <div className="p-4 md:p-6 lg:p-8 min-h-[600px] flex items-center justify-center">
+      <div className="p-4 md:p-6 lg:p-8 min-h-[600px]">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
           Related Bills
         </h2>

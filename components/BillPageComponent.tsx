@@ -89,7 +89,14 @@ const BillPageComponent = ({
   const renderTabContent = () => {
     switch (activeTab) {
       case "Discussion":
-        return <DiscussionTab discussions={discussions} />;
+        return (
+          <DiscussionTab
+            congress={billData.congress}
+            billType={billData.billType}
+            billNumber={billData.billNumber}
+            discussions={discussions}
+          />
+        );
       case "Actions":
         return <ActionsTab actions={actions} />;
       case "Amendments":

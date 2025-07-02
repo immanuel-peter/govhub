@@ -46,3 +46,12 @@ export const getRelativeTime = (dateString: string) => {
   if (diffDays < 60) return "1 month ago";
   return `${Math.floor(diffDays / 30)} months ago`;
 };
+
+export const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+};

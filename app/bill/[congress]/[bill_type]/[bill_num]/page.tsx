@@ -14,11 +14,16 @@ const BillPage = async ({
     bill_type,
     parseInt(bill_num)
   );
+  console.log(billData);
   if (!billData) {
     return <NotFoundPage />;
   }
   return (
-    <BillPageComponent billData={billData} discussions={[]} stats={billStats} />
+    <BillPageComponent
+      billData={billData}
+      discussions={discussions}
+      stats={billStats}
+    />
   );
 };
 

@@ -1,3 +1,5 @@
+import { formatDate } from "@/lib/utils";
+
 export interface BillTabProps {
   summary: string;
   pdfUrl: string;
@@ -63,7 +65,7 @@ const BillTab = ({ summary, pdfUrl, metadata }: BillTabProps) => (
                   {metadata.latestAction.text}
                 </dd>
                 <dd className="mt-1 text-xs text-gray-500">
-                  {metadata.latestAction.date}
+                  {formatDate(metadata.latestAction.date)}
                 </dd>
               </div>
             )}
@@ -78,7 +80,7 @@ const BillTab = ({ summary, pdfUrl, metadata }: BillTabProps) => (
                 Introduction Date
               </dt>
               <dd className="mt-1 text-sm text-gray-900">
-                {metadata.introductionDate}
+                {formatDate(metadata.introductionDate)}
               </dd>
             </div>
           </dl>

@@ -251,3 +251,15 @@ const fetchBillRelatedBills = async (
     })
   );
 };
+
+export const getBillTitle = async (
+  congress: number,
+  bill_type: string,
+  bill_number: number
+): Promise<string> => {
+  const response = await fetchSpecificBill(congress, bill_type, bill_number);
+  if (!response) {
+    throw new Error("Failed to fetch bill title");
+  }
+  return response.title;
+};

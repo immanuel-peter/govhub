@@ -1,4 +1,5 @@
 import { MessageSquare, Clock, MessageCircle } from "lucide-react";
+import Link from "next/link";
 import { getRelativeTime } from "@/lib/utils";
 
 export interface Discussion {
@@ -10,18 +11,29 @@ export interface Discussion {
 }
 
 interface DiscussionTabProps {
+  congress: number;
+  billType: string;
+  billNumber: number;
   discussions: Discussion[];
 }
 
-const DiscussionTab = ({ discussions }: DiscussionTabProps) => {
+const DiscussionTab = ({
+  congress,
+  billType,
+  billNumber,
+  discussions,
+}: DiscussionTabProps) => {
   if (discussions.length === 0) {
     return (
       <div className="p-4 md:p-6 lg:p-8 min-h-[490px]">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-semibold text-gray-800">Discussions</h2>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 cursor-pointer">
+          <Link
+            href={`/bill/${congress}/${billType}/${billNumber}/discussions/new?exists=true`}
+            className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 cursor-pointer"
+          >
             New discussion
-          </button>
+          </Link>
         </div>
         <p className="text-gray-600 font-semibold">Start a discussion!</p>
       </div>
@@ -32,9 +44,12 @@ const DiscussionTab = ({ discussions }: DiscussionTabProps) => {
     <div className="p-4 md:p-6 lg:p-8 min-h-[600px]">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold text-gray-800">Discussions</h2>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 cursor-pointer">
+        <Link
+          href={`/bill/${congress}/${billType}/${billNumber}/discussions/new?exists=true`}
+          className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 cursor-pointer"
+        >
           New discussion
-        </button>
+        </Link>
       </div>
       <div className="border border-gray-200 rounded-lg">
         {discussions.map((discussion, index) => (
@@ -46,12 +61,12 @@ const DiscussionTab = ({ discussions }: DiscussionTabProps) => {
           >
             <MessageSquare className="w-6 h-6 text-blue-500" />
             <div>
-              <a
-                href="#"
+              <Link
+                href={`/bill/${congress}/${billType}/${billNumber}/discussions/${discussion.id}`}
                 className="font-semibold text-gray-800 hover:text-blue-600"
               >
                 {discussion.title}
-              </a>
+              </Link>
               <div className="flex items-center space-x-4 text-sm text-gray-500">
                 <span>
                   Opened by{" "}

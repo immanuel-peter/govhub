@@ -1,5 +1,6 @@
-import { MessageSquare, ScrollText } from "lucide-react";
+import { MessageSquare, ScrollText, Pencil, Hash } from "lucide-react";
 import Link from "next/link";
+import { formatCongress, getBillTypeAlias } from "@/lib/utils";
 
 interface TrendingBill {
   rank: number;
@@ -43,17 +44,25 @@ const TrendingBills = ({
                       href={`/bill/${bill.congress}/${bill.type}/${bill.number}`}
                       className="hover:underline"
                     >
-                      {bill.type} {bill.number}: {bill.title}
+                      {bill.title}
                     </Link>
                   </p>
                   <div className="mt-1 flex items-center gap-x-4 text-xs leading-5 text-gray-500">
                     <div className="flex items-center gap-x-1">
                       <ScrollText className="h-4 w-4" />
-                      <span>{bill.congress}th Congress</span>
+                      <span>{formatCongress(bill.congress)}</span>
                     </div>
-                    <div className="flex items-center gap-x-1">
+                    {/* <div className="flex items-center gap-x-1">
                       <MessageSquare className="h-4 w-4" />
                       <span>{bill.discussions} Discussions</span>
+                    </div> */}
+                    <div className="flex items-center gap-x-1">
+                      <Pencil className="h-4 w-4" />
+                      <span>{getBillTypeAlias(bill.type)}</span>
+                    </div>
+                    <div className="flex items-center gap-x-1">
+                      <Hash className="h-4 w-4" />
+                      <span>{bill.number}</span>
                     </div>
                   </div>
                 </div>

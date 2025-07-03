@@ -41,10 +41,15 @@ const AmendmentsTab = ({ amendments }: { amendments: Amendment[] }) => {
                 {formatDate(amendment.date)}
               </span>
             </div>
-            <p className="mt-2 text-sm text-gray-600">
-              <strong>Purpose:</strong>{" "}
-              {amendment.purpose || "Unstated purpose"}
-            </p>
+            {amendment.purpose ? (
+              <p className="mt-2 text-sm text-gray-600">
+                <strong>Purpose:</strong> {amendment.purpose}
+              </p>
+            ) : (
+              <p className="mt-2 text-sm font-medium text-gray-600">
+                Unstated purpose
+              </p>
+            )}
             {amendment.latestAction.text && amendment.latestAction.date && (
               <p className="mt-3 text-xs text-gray-500 border-t pt-2">
                 <strong>Latest Action:</strong> {amendment.latestAction.text} (

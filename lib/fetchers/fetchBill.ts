@@ -183,7 +183,7 @@ const fetchBillAmendments = async (
     rawAmendments.map(async (amendment: any) => ({
       number: amendment.number,
       description: amendment.description,
-      purpose: await fetchAmendmentPurpose(amendment.url),
+      purpose: amendment.purpose || "",
       type: amendment.type === "HAMDT" ? "House Amendment" : "Senate Amendment",
       date: amendment.updateDate,
       latestAction: {
@@ -194,12 +194,6 @@ const fetchBillAmendments = async (
   );
 
   return amendments;
-};
-
-const fetchAmendmentPurpose = async (url: string): Promise<string> => {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data.amendment?.purpose || "";
 };
 
 const fetchBillSponsors = async (

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
-  title: "Discussion",
-  description: "Discussion",
+  title: "About | GovHub",
+  description: "About GovHub",
 };
 
 export default function RootLayout({

@@ -37,6 +37,12 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="ml-4 flex items-center md:ml-6">
+            <Link
+              href="/about"
+              className="text-gray-300 hover:underline hover:underline-offset-2 px-3 py-2 mr-2 rounded-md cursor-pointer text-base font-semibold"
+            >
+              About
+            </Link>
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}

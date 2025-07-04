@@ -43,7 +43,7 @@ const ActionsTab = ({ actions }: { actions: Action[] }) => {
   }
 
   return (
-    <div className="p-4 md:p-6 lg:p-8">
+    <div className="p-4 md:p-6 lg:p-8 min-h-[600px]">
       <h2 className="text-xl font-semibold text-gray-800 mb-6">
         Actions Timeline
       </h2>

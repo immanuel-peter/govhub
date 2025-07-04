@@ -8,7 +8,6 @@ interface TrendingBill {
   type: string;
   number: number;
   title: string;
-  discussions: number;
 }
 
 const TrendingBills = ({

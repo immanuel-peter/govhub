@@ -17,6 +17,9 @@ export const fetchBill = async (
     `${url}?api_key=${API_KEY}&sort=updateDate+desc&format=json`
   );
   const data = await response.json();
+  if (!response.ok) {
+    throw new Error(`Failed to fetch bill: ${response.statusText}`);
+  }
   const bills: BillDataType[] = data.bills.map((bill: any) => ({
     title: bill.title,
     congress: bill.congress,

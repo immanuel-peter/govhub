@@ -1,10 +1,10 @@
 import NotFoundPage from "@/app/not-found";
 import BillPageComponent from "@/components/pages/BillPageComponent";
-import BillTab from "@/components/bill/tabs/BillTab";
+import RelatedBillsTab from "@/components/bill/tabs/RelatedBillsTab";
 import { fetchSpecificBill } from "@/lib/fetchers/fetchBill";
 import { billStats, discussions } from "@/lib/mock/billData";
 
-const BillPage = async ({
+const RelatedBillsPage = async ({
   params,
 }: {
   params: Promise<{ congress: string; bill_type: string; bill_num: string }>;
@@ -23,15 +23,11 @@ const BillPage = async ({
       billData={billData}
       discussions={discussions}
       stats={billStats}
-      currentTab="Bill"
+      currentTab="Related Bills"
     >
-      <BillTab
-        summary={billData.billTabProps.summary}
-        pdfUrl={billData.billTabProps.pdfUrl}
-        metadata={billData.billTabProps.metadata}
-      />
+      <RelatedBillsTab relatedBills={billData.relatedBills} />
     </BillPageComponent>
   );
 };
 
-export default BillPage;
+export default RelatedBillsPage;

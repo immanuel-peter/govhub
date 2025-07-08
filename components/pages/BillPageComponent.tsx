@@ -1,21 +1,21 @@
 "use client";
 
-import { useState, ReactNode } from "react";
+import { ReactNode } from "react";
+import Link from "next/link";
 import {
   FileText,
   MessageSquare,
   List,
   FilePlus,
   Users,
-  Link,
+  Link as LucideLink,
 } from "lucide-react";
 
-import DiscussionTab, { Discussion } from "../bill/tabs/Discussion";
-import ActionsTab, { Action } from "../bill/tabs/ActionsTab";
-import AmendmentsTab, { Amendment } from "../bill/tabs/AmendmentsTab";
-import SponsorsTab, { Sponsor } from "../bill/tabs/SponsorsTab";
-import RelatedBillsTab from "../bill/tabs/RelatedBillsTab";
-import BillTab, { BillTabProps } from "../bill/tabs/BillTab";
+import { Discussion } from "../bill/tabs/Discussion";
+import { Action } from "../bill/tabs/ActionsTab";
+import { Amendment } from "../bill/tabs/AmendmentsTab";
+import { Sponsor } from "../bill/tabs/SponsorsTab";
+import { BillTabProps } from "../bill/tabs/BillTab";
 import { BillData as BillDataType } from "../bill/BillComponent";
 import Header, { BillStats } from "../layout/Header";
 import Navbar from "../layout/Navbar";
@@ -38,13 +38,13 @@ interface BillData {
 interface TabProps {
   icon: ReactNode;
   label: string;
+  href: string;
   active: boolean;
-  onClick: () => void;
 }
 
-const Tab = ({ icon, label, active, onClick }: TabProps) => (
-  <button
-    onClick={onClick}
+const Tab = ({ icon, label, href, active }: TabProps) => (
+  <Link
+    href={href}
     className={`flex items-center px-4 py-2 text-sm font-medium border-b-2 cursor-pointer ${
       active
         ? "border-orange-500 text-gray-900"
@@ -53,17 +53,21 @@ const Tab = ({ icon, label, active, onClick }: TabProps) => (
   >
     {icon}
     <span className="ml-2">{label}</span>
-  </button>
+  </Link>
 );
 
 const BillPageComponent = ({
   billData,
   discussions,
   stats,
+  currentTab,
+  children,
 }: {
   billData: BillData;
   discussions: Discussion[];
   stats: BillStats;
+  currentTab: string;
+  children: ReactNode;
 }) => {
   const {
     billTabProps,
@@ -75,43 +79,28 @@ const BillPageComponent = ({
   } = billData;
   const { summary, pdfUrl, metadata } = billTabProps;
 
-  const [activeTab, setActiveTab] = useState("Bill");
+  const basePath = `/bill/${billData.congress}/${billData.billType}/${billData.billNumber}`;
 
   const tabs = [
-    { name: "Bill", icon: <FileText className="w-5 h-5" /> },
-    { name: "Discussion", icon: <MessageSquare className="w-5 h-5" /> },
-    { name: "Actions", icon: <List className="w-5 h-5" /> },
-    { name: "Amendments", icon: <FilePlus className="w-5 h-5" /> },
-    { name: "Sponsors", icon: <Users className="w-5 h-5" /> },
-    { name: "Related Bills", icon: <Link className="w-5 h-5" /> },
+    { name: "Bill", icon: <FileText className="w-5 h-5" />, href: basePath },
+    {
+      name: "Discussion",
+      icon: <MessageSquare className="w-5 h-5" />,
+      href: `${basePath}/discussions`,
+    },
+    { name: "Actions", icon: <List className="w-5 h-5" />, href: `${basePath}/actions` },
+    {
+      name: "Amendments",
+      icon: <FilePlus className="w-5 h-5" />,
+      href: `${basePath}/amendments`,
+    },
+    { name: "Sponsors", icon: <Users className="w-5 h-5" />, href: `${basePath}/sponsors` },
+    {
+      name: "Related Bills",
+      icon: <LucideLink className="w-5 h-5" />,
+      href: `${basePath}/related-bills`,
+    },
   ];
-
-  const renderTabContent = () => {
-    switch (activeTab) {
-      case "Discussion":
-        return (
-          <DiscussionTab
-            congress={billData.congress}
-            billType={billData.billType}
-            billNumber={billData.billNumber}
-            discussions={discussions}
-          />
-        );
-      case "Actions":
-        return <ActionsTab actions={actions} />;
-      case "Amendments":
-        return <AmendmentsTab amendments={amendments} />;
-      case "Sponsors":
-        return <SponsorsTab sponsors={sponsors} cosponsors={cosponsors} />;
-      case "Related Bills":
-        return <RelatedBillsTab relatedBills={relatedBills} />;
-      case "Bill":
-      default:
-        return (
-          <BillTab summary={summary} pdfUrl={pdfUrl} metadata={metadata} />
-        );
-    }
-  };
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -134,17 +123,15 @@ const BillPageComponent = ({
                 key={tab.name}
                 icon={tab.icon}
                 label={tab.name}
-                active={activeTab === tab.name}
-                onClick={() => setActiveTab(tab.name)}
+                href={tab.href}
+                active={currentTab === tab.name}
               />
             ))}
           </nav>
         </div>
       </div>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {renderTabContent()}
-      </main>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{children}</main>
 
       <Footer />
     </div>

@@ -8,7 +8,7 @@ import {
   List,
   FilePlus,
   Users,
-  Link,
+  Link as LucideLink,
 } from "lucide-react";
 
 import { Discussion } from "../bill/tabs/Discussion";
@@ -97,7 +97,7 @@ const BillPageComponent = ({
     { name: "Sponsors", icon: <Users className="w-5 h-5" />, href: `${basePath}/sponsors` },
     {
       name: "Related Bills",
-      icon: <Link className="w-5 h-5" />,
+      icon: <LucideLink className="w-5 h-5" />,
       href: `${basePath}/related-bills`,
     },
   ];

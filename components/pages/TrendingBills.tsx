@@ -1,4 +1,4 @@
-import { MessageSquare, ScrollText, Pencil, Hash } from "lucide-react";
+import { ScrollText, Pencil, Hash } from "lucide-react";
 import Link from "next/link";
 import { formatCongress, getBillTypeAlias } from "@/lib/utils";
 
@@ -31,7 +31,7 @@ const TrendingBills = ({
           {trendingBills.map((bill) => (
             <li
               key={bill.rank}
-              className="flex items-center justify-between gap-x-6 py-5 hover:bg-gray-50 px-2 rounded-md"
+              className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-5 hover:bg-gray-50 px-2 rounded-md"
             >
               <div className="flex min-w-0 gap-x-4">
                 <span className="text-2xl font-bold text-gray-400 w-8 text-center">
@@ -46,7 +46,7 @@ const TrendingBills = ({
                       {bill.title}
                     </Link>
                   </p>
-                  <div className="mt-1 flex items-center gap-x-4 text-xs leading-5 text-gray-500">
+                  <div className="mt-1 flex flex-wrap items-center gap-x-4 text-xs leading-5 text-gray-500">
                     <div className="flex items-center gap-x-1">
                       <ScrollText className="h-4 w-4" />
                       <span>{formatCongress(bill.congress)}</span>
@@ -68,7 +68,7 @@ const TrendingBills = ({
               </div>
               <Link
                 href={`/bill/${bill.congress}/${bill.type}/${bill.number}`}
-                className="rounded-full bg-white px-3.5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-100 flex-shrink-0"
+                className="mt-2 sm:mt-0 self-start sm:self-auto rounded-full bg-white px-3.5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-100"
               >
                 View Bill
               </Link>

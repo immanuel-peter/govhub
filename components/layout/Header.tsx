@@ -82,8 +82,8 @@ const Header = ({
       <Toaster position="bottom-right" richColors />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         {/* Breadcrumbs and Action Buttons */}
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2 text-sm text-gray-500">
+        <div className="flex flex-col gap-2 md:flex-row md:justify-between md:items-center">
+          <div className="flex flex-wrap items-center text-sm text-gray-500 gap-2">
             <Link
               href={`/bill/${congress}`}
               className="font-semibold text-blue-600 cursor-pointer"
@@ -100,7 +100,7 @@ const Header = ({
             <ChevronsRight className="w-4 h-4 text-gray-400" />
             <span className="font-semibold">{billNumber}</span>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={handleWatch}
               className="flex items-center space-x-2 px-3 py-1.5 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 cursor-pointer"
@@ -137,7 +137,7 @@ const Header = ({
           </div>
         </div>
         {/* Bill Title */}
-        <div className="mt-4 flex items-center">
+        <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-2">
           <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
           {isLaw && <LawBadge />}
         </div>

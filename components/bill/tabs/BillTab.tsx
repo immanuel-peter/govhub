@@ -147,9 +147,21 @@ const BillTab = ({ summary, pdfUrl, metadata }: BillTabProps) => {
               <h2 className="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">
                 Bill Document
               </h2>
-              <PdfViewer
-                fileUrl={`/api/proxy-pdf?url=${encodeURIComponent(pdfUrl)}`}
-              />
+              <div className="md:hidden">
+                <a
+                  href={`/api/proxy-pdf?url=${encodeURIComponent(pdfUrl)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  View PDF
+                </a>
+              </div>
+              <div className="hidden md:block">
+                <PdfViewer
+                  fileUrl={`/api/proxy-pdf?url=${encodeURIComponent(pdfUrl)}`}
+                />
+              </div>
             </div>
           )}
         </div>

@@ -116,8 +116,8 @@ const BillPageComponent = ({
       />
 
       <div className="border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="-mb-px flex space-x-4" aria-label="Tabs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto overflow-y-hidden">
+          <nav className="-mb-px flex space-x-4 min-w-max" aria-label="Tabs">
             {tabs.map((tab) => (
               <Tab
                 key={tab.name}

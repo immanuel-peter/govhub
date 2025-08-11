@@ -78,8 +78,6 @@ const BillTab = ({ summary, pdfUrl, metadata }: BillTabProps) => {
     summary &&
     (summary.length > 300 || (summary.match(/\S+/g) || []).length > 50);
 
-  console.log(summary);
-
   return (
     <div className="p-4 md:p-6 lg:p-8 min-h-[600px]">
       <div className="flex flex-col md:flex-row gap-8">

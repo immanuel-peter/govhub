@@ -47,9 +47,7 @@ export default function AboutPage() {
                 found on general social networks. Furthermore, legislative
                 actions, amendments, sponsors, and related bills are
                 meticulously tracked and updated in real-time. Users also have
-                the ability to track their favorite and interesting bills, while
-                trending bills are updated weekly (note: there is currently no
-                direct API endpoint or web scraping method for trending bills).
+                the ability to track their favorite and interesting bills.
               </p>
             </div>
           </section>

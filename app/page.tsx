@@ -5,6 +5,9 @@ import TrendingBills from "@/components/pages/TrendingBills";
 
 import { parseTrendingBills } from "@/lib/utils/parseTrendingBills";
 
+// Revalidate every hour to get fresh trending bills data
+export const revalidate = 3600;
+
 export default async function Home() {
   const trendingBillsRecord = await parseTrendingBills();
   const trendingBills = Object.entries(trendingBillsRecord).map(

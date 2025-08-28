@@ -34,6 +34,12 @@ const TYPE_MAP: Record<string, TrendingBill["type"]> = {
 export async function parseTrendingBills(): Promise<Record<string, TrendingBill>> {
   const res = await axios.get(
     "https://www.congress.gov/rss/most-viewed-bills.xml",
+    {
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    }
   );
   const xml = res.data;
 

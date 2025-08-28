@@ -31,48 +31,63 @@ const TYPE_MAP: Record<string, TrendingBill["type"]> = {
   "senate-concurrent-resolution": "sconres",
 };
 
-export async function parseTrendingBills(): Promise<Record<string, TrendingBill>> {
-  const res = await axios.get(
-    "https://www.congress.gov/rss/most-viewed-bills.xml",
-    {
-      headers: {
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
+export async function parseTrendingBills(): Promise<Record<
+  string,
+  TrendingBill
+> | null> {
+  try {
+    const res = await axios.get(
+      "https://www.congress.gov/rss/most-viewed-bills.xml",
+      {
+        headers: {
+          "Cache-Control": "no-cache",
+          Pragma: "no-cache",
+        },
+        timeout: 10000, // 10 second timeout
       }
+    );
+    const xml = res.data;
+
+    const dom = new JSDOM(xml, { contentType: "text/xml" });
+    const description =
+      dom.window.document.querySelector("item > description")?.textContent ??
+      "";
+
+    const html = new JSDOM(description).window.document;
+    const listItems = Array.from(html.querySelectorAll("li"));
+
+    const output: Record<string, TrendingBill> = {};
+
+    listItems.forEach((li, index) => {
+      const a = li.querySelector("a");
+      if (!a) return;
+
+      const url = a.href;
+      const titleText = li.textContent?.split(" - ")[1]?.trim();
+      const match = url.match(/bill\/(\d+)(?:th)?-congress\/([a-z-]+)\/(\d+)/);
+      if (!match) return;
+
+      const [_, congress, rawType, number] = match;
+      const type = TYPE_MAP[rawType];
+      if (!type) return;
+
+      output[(index + 1).toString()] = {
+        congress: parseInt(congress),
+        type,
+        number: parseInt(number),
+        title: titleText || "",
+      };
+    });
+
+    // Return parsed data if we got valid results, otherwise return null
+    if (Object.keys(output).length > 0) {
+      return output;
+    } else {
+      console.warn("No valid bills parsed from RSS feed");
+      return null;
     }
-  );
-  const xml = res.data;
-
-  const dom = new JSDOM(xml, { contentType: "text/xml" });
-  const description =
-    dom.window.document.querySelector("item > description")?.textContent ?? "";
-
-  const html = new JSDOM(description).window.document;
-  const listItems = Array.from(html.querySelectorAll("li"));
-
-  const output: Record<string, TrendingBill> = {};
-
-  listItems.forEach((li, index) => {
-    const a = li.querySelector("a");
-    if (!a) return;
-
-    const url = a.href;
-    const titleText = li.textContent?.split(" - ")[1]?.trim();
-    const match = url.match(/bill\/(\d+)(?:th)?-congress\/([a-z-]+)\/(\d+)/);
-    if (!match) return;
-
-    const [_, congress, rawType, number] = match;
-    const type = TYPE_MAP[rawType];
-    if (!type) return;
-
-    output[(index + 1).toString()] = {
-      congress: parseInt(congress),
-      type,
-      number: parseInt(number),
-      title: titleText || "",
-    };
-  });
-
-  return output;
+  } catch (error) {
+    console.error("Failed to fetch trending bills from RSS feed:", error);
+    return null;
+  }
 }
-
